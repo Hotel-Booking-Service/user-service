@@ -1,1 +1,1 @@
-rootProject.name = "template" // TODO: изменить name
+rootProject.name = "user-service"

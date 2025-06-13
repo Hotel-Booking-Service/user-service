@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: template #TODO: ???????? name
+    name: user-service
   config:
     import: optional:file:.env[.properties]
   docker:

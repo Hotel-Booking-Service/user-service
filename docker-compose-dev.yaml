@@ -1,4 +1,4 @@
-name: template-dev
+name: user-service-dev
 
 services:
   postgres:
