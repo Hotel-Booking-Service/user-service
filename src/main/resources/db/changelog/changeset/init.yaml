@@ -1,0 +1,5 @@
+databaseChangeLog: #TODO : УДАЛИТЬ ПРИ СОЗДАНИЕ ПЕРВОЙ МИГРАЦИИ
+  - changeSet:
+      id: init
+      author: dima shagahod
+      changes: []

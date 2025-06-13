@@ -1,0 +1,14 @@
+name: template-test
+
+services:
+  postgres:
+    extends:
+      service: postgres
+      file: services.yaml
+    container_name: postgres-test-container
+    environment:
+      POSTGRES_DB: test_db
+      POSTGRES_USER: test_user
+      POSTGRES_PASSWORD: test_password
+    ports:
+      - target: 5432
