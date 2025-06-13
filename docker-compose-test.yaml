@@ -1,4 +1,4 @@
-name: template-test
+name: user-service-test
 
 services:
   postgres:
