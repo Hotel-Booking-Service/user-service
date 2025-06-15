@@ -1,0 +1,6 @@
+preference:
+  - id : 1
+    language: RU
+    timezone: Europe/Moscow
+    currency: RUB
+    notification: SMS
