@@ -147,11 +147,6 @@ jobs:
           
           echo "$RESPONSE" | jq -r '.data.data | to_entries[] | "\(.key)=\(.value)"' >> $GITHUB_ENV
 
-      - name: Debug - Show loaded secrets
-        run: |
-          echo "Loaded secrets from Vault:"
-          echo "SONAR_TOKEN=${SONAR_TOKEN:0:4}****"
-
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
@@ -248,17 +243,6 @@ jobs:
           path: |
             build/reports/jacoco/test/html/
             build/reports/jacoco/test/jacocoTestReport.xml
-
-      - name: Debug - Check SONAR_TOKEN before scan
-        run: |
-          if [ -z "${SONAR_TOKEN}" ]; then
-            echo "SONAR_TOKEN is NOT set!"
-            exit 1
-          else
-            echo "SONAR_TOKEN is set: ${SONAR_TOKEN:0:4}****"
-          fi
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       - name: SonarQube Scan
         uses: sonarsource/sonarcloud-github-action@master
