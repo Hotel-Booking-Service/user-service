@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,5 +46,5 @@ public interface PreferenceController {
     )
     @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    PreferenceResponse patchPreference(@PathVariable Long id, @RequestBody PatchPreferenceRequest patchPreferenceRequest);
+    PreferenceResponse patchPreference(@PathVariable Long id, @Validated @RequestBody PatchPreferenceRequest patchPreferenceRequest);
 }
