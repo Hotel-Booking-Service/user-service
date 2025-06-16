@@ -10,6 +10,7 @@ import com.hbs.userservice.model.User;
 import com.hbs.userservice.repository.AvatarRepository;
 import com.hbs.userservice.repository.PreferenceRepository;
 import com.hbs.userservice.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -29,6 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DataJpaTest
 @ActiveProfiles("test")
+@Transactional
 class UserRepositoryTest {
 
     @Autowired
@@ -42,6 +44,7 @@ class UserRepositoryTest {
 
 
     @Test
+    @Transactional
     void whenCreateUser_thenPersisted() {
         User saved = userRepository.save(createUser());
 
@@ -52,6 +55,7 @@ class UserRepositoryTest {
     }
 
     @Test
+    @Transactional
     void whenFindById_thenReturnUser() {
         User user = userRepository.save(createUser());
 
@@ -62,6 +66,7 @@ class UserRepositoryTest {
     }
 
     @Test
+    @Transactional
     void whenUpdateUser_thenChangesPersisted() {
         User user = userRepository.save(createUser());
 
@@ -75,6 +80,7 @@ class UserRepositoryTest {
     }
 
     @Test
+    @Transactional
     void whenDeleteUser_thenCascadeRemovesChildren() {
         User user = userRepository.save(createUser());
         Long avatarId = user.getAvatar().getId();
@@ -89,6 +95,7 @@ class UserRepositoryTest {
     }
 
     @Test
+    @Transactional
     void whenDuplicateEmail_thenThrowsException() {
         String email = UUID.randomUUID() + "@mail.com";
 
