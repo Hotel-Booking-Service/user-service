@@ -4,10 +4,10 @@ import com.hbs.userservice.exception.domain.preference.PreferenceNotFoundExcepti
 import com.hbs.userservice.model.Preference;
 import com.hbs.userservice.repository.PreferenceRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service
+@Component
 @RequiredArgsConstructor
 public class PreferenceResolver implements EntityResolver<Preference> {
 
