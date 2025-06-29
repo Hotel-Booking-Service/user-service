@@ -1,5 +1,6 @@
 package com.hbs.userservice.controller.interest;
 
+import com.hbs.userservice.annotation.RestLoggableEndpoint;
 import com.hbs.userservice.dto.request.InterestRequest;
 import com.hbs.userservice.dto.response.InterestResponse;
 import com.hbs.userservice.dto.response.PageResponse;
@@ -57,6 +58,7 @@ public class InterestControllerImpl implements InterestController {
     @Override
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @RestLoggableEndpoint
     public void deleteInterest(@PathVariable Long id) {
         interestService.deleteInterest(id);
     }
