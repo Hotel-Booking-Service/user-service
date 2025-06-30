@@ -30,6 +30,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-docker-compose")
+    implementation("software.amazon.awssdk:s3:${property("aws-sdk-s3.version")}")
     implementation("net.logstash.logback:logstash-logback-encoder:${property("logstash-logback-encoder.version")}")
     implementation("software.amazon.awssdk:s3:${property("aws-sdk-s3.version")}")
     implementation("org.mapstruct:mapstruct:${property("mapstruct.version")}")
