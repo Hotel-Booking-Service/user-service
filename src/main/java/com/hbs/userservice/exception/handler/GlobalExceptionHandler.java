@@ -1,6 +1,7 @@
 package com.hbs.userservice.exception.handler;
 
 import com.hbs.userservice.dto.response.ErrorResponse;
+import com.hbs.userservice.exception.base.InvalidException;
 import com.hbs.userservice.exception.base.NotFoundException;
 import com.hbs.userservice.mapper.ExceptionMapper;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,6 +20,12 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(NotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorResponse handleNotFoundException(NotFoundException e, HttpServletRequest request) {
+        return exceptionMapper.toErrorResponse(e, request.getRequestURI());
+    }
+
+    @ExceptionHandler(InvalidException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResponse handleInvalidException(InvalidException e, HttpServletRequest request) {
         return exceptionMapper.toErrorResponse(e, request.getRequestURI());
     }
 }
