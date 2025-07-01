@@ -1,5 +1,6 @@
 package com.hbs.userservice.resolver;
 
-public interface EntityResolver<T> {
-    T resolveById(Long id);
+public interface EntityResolver<T, K> {
+    T resolveById(K id);
+
 }

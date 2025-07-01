@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Component
 @RequiredArgsConstructor
-public class InterestResolver implements EntityResolver<Interest> {
+public class InterestResolver implements EntityResolver<Interest, Long> {
 
     private final InterestRepository interestRepository;
 
