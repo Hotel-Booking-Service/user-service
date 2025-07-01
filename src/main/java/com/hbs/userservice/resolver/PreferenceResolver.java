@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Component
 @RequiredArgsConstructor
-public class PreferenceResolver implements EntityResolver<Preference> {
+public class PreferenceResolver implements EntityResolver<Preference, Long> {
 
     private final PreferenceRepository preferenceRepository;
 
