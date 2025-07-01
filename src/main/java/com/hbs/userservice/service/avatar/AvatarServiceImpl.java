@@ -1,7 +1,6 @@
 package com.hbs.userservice.service.avatar;
 
 import com.hbs.userservice.dto.response.AvatarResponse;
-import com.hbs.userservice.exception.domain.user.UserNotFoundException;
 import com.hbs.userservice.mapper.AvatarMapper;
 import com.hbs.userservice.model.Avatar;
 import com.hbs.userservice.model.User;
@@ -21,7 +20,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.net.URI;
 import java.time.Duration;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 @Slf4j
@@ -47,27 +45,14 @@ public class AvatarServiceImpl implements AvatarService {
         log.info("Starting avatar upload, originalFilename={}", file.getOriginalFilename());
         validator.validateAvatar(file);
 
-        UUID userId = UUID.fromString("dddea804-916f-42da-950d-e7f0c462cfac"); //TODO Поменять позже на получение id из токена
-        User user = userRepository.findById(userId)
-                        .orElseThrow(UserNotFoundException::new);
-
         String s3Key = s3StorageService.uploadFile(file, AVATAR_PATH);
 
         log.debug("File uploaded to S3, s3Key={}", s3Key);
-        if (user.getAvatar() == null) {
-            Avatar avatar = new Avatar();
-            avatar.setS3Key(s3Key);
-            user.setAvatar(avatar);
-            log.debug("New avatar assigned to user {}", userId);
-        } else {
-            s3StorageService.deleteFile(user.getAvatar().getS3Key());
-            user.getAvatar().setS3Key(s3Key);
-            log.debug("Existing avatar updated for user {}", userId);
-        }
-
-        userRepository.save(user);
-        log.info("Avatar successfully saved for user {}", userId);
-        return avatarMapper.toAvatarResponse(user.getAvatar());
+        Avatar avatar = new Avatar();
+        avatar.setS3Key(s3Key);
+        avatarRepository.save(avatar);
+        log.info("Avatar uploaded successfully");
+        return avatarMapper.toAvatarResponse(avatar);
     }
 
     @Override
